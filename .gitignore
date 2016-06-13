@@ -1,0 +1,9 @@
+#############
+## Node
+#############
+
+# Node modules
+/node_modules
+
+# Distribution files
+/dest
