@@ -87,7 +87,7 @@ gulp.task('browser-sync', () => {
 gulp.task('watch', () => {
     gulp.watch('./src/pug/**/*.pug', ['pug'])
     gulp.watch('./src/stylus/**/*.styl', ['stylus'])
-    gulp.watch('./src/script/**/*.js', ['babel'])
+    gulp.watch('./src/babel/**/*.js', ['babel'])
 })
 
 gulp.task('default', ['pug', 'stylus', 'babel', 'watch', 'browser-sync'])
