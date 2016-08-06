@@ -2,8 +2,12 @@
 
 import gulp from 'gulp'
 import babel from 'gulp-babel'
+import flow from 'gulp-flowtype'
 import stylus from 'gulp-stylus'
 import pug from 'gulp-pug'
+import spritesmith from 'gulp.spritesmith'
+import folder from 'gulp-folders'
+import path from 'path'
 
 import nib from 'nib'
 import jeet from 'jeet'
@@ -12,6 +16,7 @@ import sourcemaps from 'gulp-sourcemaps'
 
 import plumber from 'gulp-plumber'
 import notify from 'gulp-notify'
+import gulpIf from 'gulp-if'
 
 import browserSync from 'browser-sync'
 
@@ -37,7 +42,9 @@ const babelPaths = {
 
 gulp.task('pug', () => {
     return gulp.src(pugPaths.src)
-        .pipe(plumber({errorHandler: notify.onError('Error: <%= error.message %>')}))
+        .pipe(plumber({
+            errorHandler: notify.onError('Error: <%= error.message %>')
+        }))
         .pipe(sourcemaps.init())
         .pipe(pug({
             pretty: true
@@ -49,7 +56,9 @@ gulp.task('pug', () => {
 
 gulp.task('stylus', () => {
     return gulp.src(stylusPaths.src)
-        .pipe(plumber({errorHandler: notify.onError('Error: <%= error.message %>')}))
+        .pipe(plumber({
+            errorHandler: notify.onError('Error: <%= error.message %>')
+        }))
         .pipe(sourcemaps.init())
         .pipe(stylus({
             use: [
@@ -64,15 +73,47 @@ gulp.task('stylus', () => {
 
 gulp.task('babel', () => {
     return gulp.src(babelPaths.src)
-        .pipe(plumber({errorHandler: notify.onError('Error: <%= error.message %>')}))
+        .pipe(plumber({
+            errorHandler: notify.onError('Error: <%= error.message %>')
+        }))
         .pipe(sourcemaps.init())
         .pipe(babel({
-            presets: ['es2015']
+            presets: [
+				'es2015'
+			],
+			plugins: [
+				'syntax-flow',
+				'transform-flow-strip-types'
+			]
         }))
         .pipe(sourcemaps.write())
         .pipe(gulp.dest(babelPaths.dest))
         .pipe(browserSync.stream())
 })
+
+gulp.task('flow', () => {
+	return gulp.src(babelPaths.src)
+		.pipe(flow({
+			all: false,
+	        weak: false,
+	        declarations: './declarations',
+	        killFlow: false,
+	        beep: true,
+	        abort: false
+		}))
+})
+
+gulp.task('sprite', folder('src/img', (folder) => {
+    return gulp.src(path.join('src/img/', folder, '*png'))
+		.pipe(spritesmith({
+			imgName: `${folder}.png`,
+			cssName: `_${folder}.styl`,
+			cssFormat: 'stylus',
+			algorithm: 'top-down'
+		}))
+		.pipe(gulpIf('*.styl', gulp.dest('src/stylus/_sprites')))
+		.pipe(gulpIf('*.png', gulp.dest('dist/images')))
+}))
 
 browserSync.create()
 
@@ -87,7 +128,7 @@ gulp.task('browser-sync', () => {
 gulp.task('watch', () => {
     gulp.watch('./src/pug/**/*.pug', ['pug'])
     gulp.watch('./src/stylus/**/*.styl', ['stylus'])
-    gulp.watch('./src/script/**/*.js', ['babel'])
+    gulp.watch('./src/babel/**/*.js', ['babel'])
 })
 
 gulp.task('default', ['pug', 'stylus', 'babel', 'watch', 'browser-sync'])
