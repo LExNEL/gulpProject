@@ -17,6 +17,7 @@ import sourcemaps from 'gulp-sourcemaps'
 import plumber from 'gulp-plumber'
 import notify from 'gulp-notify'
 import gulpIf from 'gulp-if'
+import mainBowerFiles from 'main-bower-files'
 
 import browserSync from 'browser-sync'
 
@@ -38,6 +39,11 @@ const stylusPaths = {
 const babelPaths = {
     src: `${dirs.src}/babel/*.js`,
     dest: `${dirs.dest}/script/`
+}
+
+const imagePaths = {
+    src: `${dirs.src}/images/`,
+    dest: `${dirs.dest}/images/`
 }
 
 gulp.task('pug', () => {
@@ -76,44 +82,45 @@ gulp.task('babel', () => {
         .pipe(plumber({
             errorHandler: notify.onError('Error: <%= error.message %>')
         }))
+        .pipe(flow({
+            all: false,
+            weak: false,
+            declarations: './declarations',
+            killFlow: false,
+            beep: true,
+            abort: false
+        }))
         .pipe(sourcemaps.init())
         .pipe(babel({
             presets: [
-				'es2015'
-			],
-			plugins: [
-				'syntax-flow',
-				'transform-flow-strip-types'
-			]
+                'es2015'
+            ],
+            plugins: [
+                'syntax-flow',
+                'transform-flow-strip-types'
+            ]
         }))
         .pipe(sourcemaps.write())
         .pipe(gulp.dest(babelPaths.dest))
         .pipe(browserSync.stream())
 })
 
-gulp.task('flow', () => {
-	return gulp.src(babelPaths.src)
-		.pipe(flow({
-			all: false,
-	        weak: false,
-	        declarations: './declarations',
-	        killFlow: false,
-	        beep: true,
-	        abort: false
-		}))
-})
-
-gulp.task('sprite', folder('src/img', (folder) => {
-    return gulp.src(path.join('src/img/', folder, '*png'))
-		.pipe(spritesmith({
-			imgName: `${folder}.png`,
-			cssName: `_${folder}.styl`,
-			cssFormat: 'stylus',
-			algorithm: 'top-down'
-		}))
-		.pipe(gulpIf('*.styl', gulp.dest('src/stylus/_sprites')))
-		.pipe(gulpIf('*.png', gulp.dest('dist/images')))
+gulp.task('sprite', folder(imagePaths.src, (folder) => {
+    return gulp.src(path.join(imagePaths.src, folder, '*.png'))
+        .pipe(spritesmith({
+            imgName: `${folder}.png`,
+            cssName: `_${folder}.styl`,
+            cssFormat: 'stylus',
+            algorithm: 'top-down'
+        }))
+        .pipe(gulpIf('*.styl', gulp.dest('src/stylus/_sprites')))
+        .pipe(gulpIf('*.png', gulp.dest(imagePaths.dest)))
 }))
+
+gulp.task('bower', () => {
+	return gulp.src(mainBowerFiles())
+		.pipe(gulp.dest('dist/script/lib'))
+})
 
 browserSync.create()
 
@@ -131,4 +138,4 @@ gulp.task('watch', () => {
     gulp.watch('./src/babel/**/*.js', ['babel'])
 })
 
-gulp.task('default', ['pug', 'stylus', 'babel', 'watch', 'browser-sync'])
+gulp.task('default', ['pug', 'stylus', 'babel', 'bower', 'watch', 'browser-sync'])

@@ -1,0 +1,27 @@
+{
+  "name": "gulptamplate",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "LEx Klimin"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "gulp",
+    "pug",
+    "stylus",
+    "babel"
+  ],
+  "homepage": "https://github.com/LExNEL/gulpProject",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.1.0",
+    "vue": "^1.0.26"
+  }
+}
