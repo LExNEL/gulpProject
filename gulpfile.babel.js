@@ -1,6 +1,7 @@
-'use strict'
-
 import gulp from 'gulp'
+import watch from 'gulp-watch'
+import batch from 'gulp-batch'
+
 import babel from 'gulp-babel'
 import flow from 'gulp-flowtype'
 import stylus from 'gulp-stylus'
@@ -11,6 +12,9 @@ import path from 'path'
 
 import nib from 'nib'
 import jeet from 'jeet'
+
+import autoprefixer from 'gulp-autoprefixer'
+import csscomb from 'gulp-csscomb'
 
 import sourcemaps from 'gulp-sourcemaps'
 
@@ -46,6 +50,12 @@ const imagePaths = {
     dest: `${dirs.dest}/images/`
 }
 
+const fontPaths = {
+    src: `${dirs.src}/fonts/**/*.*`,
+    dest: `${dirs.dest}/fonts/`
+}
+
+
 gulp.task('pug', () => {
     return gulp.src(pugPaths.src)
         .pipe(plumber({
@@ -72,6 +82,11 @@ gulp.task('stylus', () => {
                 jeet()
             ]
         }))
+        .pipe(autoprefixer({
+            browsers: ['last 2 versions', 'ie 8', 'ie 9'],
+            cascade: false
+        }))
+        .pipe(csscomb())
         .pipe(sourcemaps.write())
         .pipe(gulp.dest(stylusPaths.dest))
         .pipe(browserSync.stream())
@@ -108,7 +123,7 @@ gulp.task('babel', () => {
 gulp.task('sprite', folder(imagePaths.src, (folder) => {
     return gulp.src(path.join(imagePaths.src, folder, '*.png'))
         .pipe(spritesmith({
-            imgName: `${folder}.png`,
+            imgName: `../images/${folder}.png`,
             cssName: `_${folder}.styl`,
             cssFormat: 'stylus',
             algorithm: 'top-down'
@@ -122,20 +137,33 @@ gulp.task('bower', () => {
 		.pipe(gulp.dest('dist/script/lib'))
 })
 
+gulp.task('fonts', () => {
+    return gulp.src(fontPaths.src)
+        .pipe(gulp.dest(fontPaths.dest))
+})
+
 browserSync.create()
 
 gulp.task('browser-sync', () => {
     browserSync.init({
+        reloadDelay: 500,
         server: {
             baseDir: './dist/'
-        }
+        },
+        open: false
     })
 })
 
 gulp.task('watch', () => {
-    gulp.watch('./src/pug/**/*.pug', ['pug'])
-    gulp.watch('./src/stylus/**/*.styl', ['stylus'])
-    gulp.watch('./src/babel/**/*.js', ['babel'])
+    watch('./src/pug/**/*.pug', batch(function (events, done) {
+        gulp.start('pug', done);
+    }));
+    watch('./src/stylus/**/*.styl', batch(function (events, done) {
+        gulp.start('stylus', done);
+    }));
+    watch('./src/babel/**/*.js', batch(function (events, done) {
+        gulp.start('babel', done);
+    }));
 })
 
-gulp.task('default', ['pug', 'stylus', 'babel', 'bower', 'watch', 'browser-sync'])
+gulp.task('default', ['pug', 'stylus', 'babel', 'watch', 'browser-sync'])
