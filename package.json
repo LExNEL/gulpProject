@@ -45,6 +45,7 @@
     "gulp.spritesmith": "^6.2.1",
     "jeet": "^6.1.5",
     "main-bower-files": "^2.13.1",
-    "nib": "^1.1.2"
+    "nib": "^1.1.2",
+    "require-dir": "^0.3.1"
   }
 }
