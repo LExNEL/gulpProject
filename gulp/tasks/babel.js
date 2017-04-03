@@ -1,5 +1,5 @@
 import {babelPaths} from '../config'
-import {gulp, plumber, notify, sourcemaps, babel, flow, browserSync} from '../modules'
+import {gulp, plumber, notify, sourcemaps, babel, flow, eslint, browserSync} from '../modules'
 
 gulp.task('babel', () => {
     return gulp.src(babelPaths.src)
@@ -17,13 +17,14 @@ gulp.task('babel', () => {
         .pipe(sourcemaps.init())
         .pipe(babel({
             presets: [
-                'es2015'
-            ],
-            plugins: [
-                'syntax-flow',
-                'transform-flow-strip-types'
+                'env',
+                'flow'
             ]
         }))
+        .pipe(eslint({
+            configFile: '.eslintrc.yml'
+        }))
+        .pipe(eslint.format())
         .pipe(sourcemaps.write())
         .pipe(gulp.dest(babelPaths.dest))
         .pipe(browserSync.stream())

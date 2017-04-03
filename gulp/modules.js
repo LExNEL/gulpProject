@@ -5,6 +5,7 @@ import gulp_batch from 'gulp-batch'
 
 import gulp_babel from 'gulp-babel'
 import gulp_flowtype from 'gulp-flowtype'
+import gulp_eslint from 'gulp-eslint'
 import gulp_stylus from 'gulp-stylus'
 import gulp_pug from 'gulp-pug'
 import gulp_spritesmith from 'gulp.spritesmith'
@@ -22,7 +23,6 @@ import gulp_sourcemaps from 'gulp-sourcemaps'
 import gulp_plumber from 'gulp-plumber'
 import gulp_notify from 'gulp-notify'
 import gulp_if from 'gulp-if'
-import main_bower_files from 'main-bower-files'
 
 import browser_sync from 'browser-sync'
 
@@ -33,6 +33,7 @@ export const batch = gulp_batch
 
 export const babel = gulp_babel
 export const flow = gulp_flowtype
+export const eslint = gulp_eslint
 export const stylus = gulp_stylus
 export const pug = gulp_pug
 export const spritesmith = gulp_spritesmith
@@ -50,6 +51,5 @@ export const sourcemaps = gulp_sourcemaps
 export const plumber = gulp_plumber
 export const notify = gulp_notify
 export const gulpIf = gulp_if
-export const mainBowerFiles = main_bower_files
 
 export const browserSync = browser_sync
