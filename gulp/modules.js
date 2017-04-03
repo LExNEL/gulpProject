@@ -1,3 +1,4 @@
+// Import modules
 import gulp_ from 'gulp'
 import gulp_watch from 'gulp-watch'
 import gulp_batch from 'gulp-batch'
@@ -25,6 +26,7 @@ import main_bower_files from 'main-bower-files'
 
 import browser_sync from 'browser-sync'
 
+// Export modules
 export const gulp = gulp_
 export const watch = gulp_watch
 export const batch = gulp_batch

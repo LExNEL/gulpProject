@@ -8,7 +8,7 @@ gulp.task('pug', () => {
         }))
         .pipe(sourcemaps.init())
         .pipe(pug({
-            pretty: true
+            pretty: '    '
         }))
         .pipe(sourcemaps.write())
         .pipe(gulp.dest(pugPaths.dest))

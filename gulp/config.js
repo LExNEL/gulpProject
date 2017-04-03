@@ -10,20 +10,25 @@ export const pugPaths = {
 
 export const stylusPaths = {
     src: `${dirs.src}/stylus/*.styl`,
-    dest: `${dirs.dest}/style/`
+    dest: `${dirs.dest}/assets/css/`
 }
 
 export const babelPaths = {
     src: `${dirs.src}/babel/*.js`,
-    dest: `${dirs.dest}/script/`
+    dest: `${dirs.dest}/assets/js/`
 }
 
 export const imagePaths = {
     src: `${dirs.src}/images/`,
-    dest: `${dirs.dest}/images/`
+    dest: `${dirs.dest}/assets/images/`
 }
 
 export const fontPaths = {
     src: `${dirs.src}/fonts/**/*.*`,
-    dest: `${dirs.dest}/fonts/`
+    dest: `${dirs.dest}/assets/fonts/`
+}
+
+export const libPaths = {
+    src: `bower_components/**`,
+    dest: `${dirs.dest}/assets/libs/`
 }
