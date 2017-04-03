@@ -3,4 +3,4 @@ import requireDir from 'require-dir'
 
 requireDir('./gulp', {recurse: true})
 
-gulp.task('default', ['pug', 'stylus', 'babel', 'watch', 'browser-sync'])
+gulp.task('default', ['fonts', 'libs', 'pug', 'stylus', 'babel', 'watch', 'browser-sync'])

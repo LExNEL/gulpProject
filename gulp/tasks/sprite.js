@@ -1,8 +1,8 @@
 import {imagePaths} from '../config'
-import {gulp, gulpIf, folder, spritesmith} from '../modules'
+import {gulp, gulpIf, folder, path, spritesmith} from '../modules'
 
 gulp.task('sprite', folder(imagePaths.src, (folder) => {
-    return gulp.src(path.join(imagePaths.src, folder, '*.png'))
+    return gulp.src(path.join(imagePaths.src, folder, '*.*'))
         .pipe(spritesmith({
             imgName: `../images/${folder}.png`,
             cssName: `_${folder}.styl`,
