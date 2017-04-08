@@ -1,12 +1,12 @@
-import {stylusPaths} from '../config'
-import {gulp, plumber, notify, sourcemaps, stylus, nib, jeet, autoprefixer, csscomb, browserSync} from '../modules'
+import {stylusPaths, isProduction} from '../config'
+import {gulp, gulpIf, plumber, notify, sourcemaps, stylus, nib, jeet, autoprefixer, csscomb, browserSync} from '../modules'
 
 gulp.task('stylus', () => {
     return gulp.src(stylusPaths.src)
         .pipe(plumber({
             errorHandler: notify.onError('Error: <%= error.message %>')
         }))
-        .pipe(sourcemaps.init())
+        .pipe(gulpIf(!isProduction, sourcemaps.init()))
         .pipe(stylus({
             use: [
                 nib(),
@@ -14,11 +14,11 @@ gulp.task('stylus', () => {
             ]
         }))
         .pipe(autoprefixer({
-            browsers: ['last 2 versions', 'ie 8', 'ie 9'],
+            browsers: ['last 4 versions'],
             cascade: false
         }))
-        .pipe(csscomb())
-        .pipe(sourcemaps.write())
+        .pipe(gulpIf(!isProduction, sourcemaps.write()))
+        .pipe(gulpIf(isProduction, csscomb()))
         .pipe(gulp.dest(stylusPaths.dest))
         .pipe(browserSync.stream())
 })
