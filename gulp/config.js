@@ -1,3 +1,5 @@
+const NODE_ENV = process.env.NODE_ENV || 'development'
+
 const dirs = {
     src: 'src',
     dest: 'dist'
@@ -32,3 +34,5 @@ export const libPaths = {
     src: `bower_components/**`,
     dest: `${dirs.dest}/assets/libs/`
 }
+
+export const isProduction = NODE_ENV === 'production'
