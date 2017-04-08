@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "gulp",
+    "build": "NODE_ENV=production gulp"
   },
   "repository": {
     "type": "git",
@@ -24,9 +26,15 @@
   "homepage": "https://github.com/LExNEL/gulpProject#readme",
   "devDependencies": {
     "babel-core": "*",
+    "babel-eslint": "*",
+    "babel-loader": "*",
     "babel-preset-env": "*",
     "babel-preset-flow": "*",
     "browser-sync": "*",
+    "eslint": "*",
+    "eslint-loader": "*",
+    "eslint-plugin-flowtype": "*",
+    "gulp": "*",
     "gulp-autoprefixer": "*",
     "gulp-babel": "*",
     "gulp-batch": "*",
@@ -42,9 +50,14 @@
     "gulp-stylus": "*",
     "gulp-watch": "*",
     "gulp.spritesmith": "*",
-    "gulp": "*",
     "jeet": "*",
     "nib": "*",
-    "require-dir": "*"
+    "require-dir": "*",
+    "webpack": " *",
+    "webpack-stream": "*"
+  },
+  "dependencies": {
+    "jquery": "*",
+    "lodash": "*"
   }
 }
