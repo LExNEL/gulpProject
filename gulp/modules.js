@@ -5,7 +5,6 @@ import gulp_batch from 'gulp-batch'
 
 import gulp_babel from 'gulp-babel'
 import gulp_flowtype from 'gulp-flowtype'
-import gulp_eslint from 'gulp-eslint'
 
 import webpack_ from 'webpack'
 import webpack_stream from 'webpack-stream'
@@ -15,6 +14,8 @@ import gulp_pug from 'gulp-pug'
 import gulp_spritesmith from 'gulp.spritesmith'
 import gulp_folder from 'gulp-folders'
 import path_ from 'path'
+import fs_ from 'fs'
+import es_ from 'event-stream'
 
 import nib_ from 'nib'
 import jeet_ from 'jeet'
@@ -37,7 +38,6 @@ export const batch = gulp_batch
 
 export const babel = gulp_babel
 export const flow = gulp_flowtype
-export const eslint = gulp_eslint
 
 export const webpack = webpack_
 export const webpackStream = webpack_stream
@@ -47,6 +47,8 @@ export const pug = gulp_pug
 export const spritesmith = gulp_spritesmith
 export const folder = gulp_folder
 export const path = path_
+export const fs = fs_
+export const es = es_
 
 export const nib = nib_
 export const jeet = jeet_

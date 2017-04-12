@@ -10,7 +10,7 @@ gulp.task('babel', () => {
         .pipe(flow({
             all: false,
             weak: false,
-            declarations: './declarations',
+            declarations: './interfaces',
             killFlow: false,
             beep: true,
             abort: false

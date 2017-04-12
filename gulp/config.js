@@ -31,7 +31,7 @@ export const fontPaths = {
 }
 
 export const libPaths = {
-    src: `bower_components/**`,
+    src: `./node_modules/`,
     dest: `${dirs.dest}/assets/libs/`
 }
 
