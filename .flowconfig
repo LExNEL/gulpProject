@@ -5,3 +5,4 @@
 [libs]
 interfaces/
 [options]
+all=false

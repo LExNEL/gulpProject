@@ -1,5 +1,6 @@
 import path from 'path'
 import webpack from 'webpack'
+import FlowWebpackPlugin from 'flow-webpack-plugin'
 
 export default {
     entry: {
@@ -8,7 +9,7 @@ export default {
     },
     output: {
         filename: 'script.js',
-        path: path.resolve(__dirname, 'dist/assets/js')
+        path: path.resolve(__dirname, './dist/assets/js')
     },
     module: {
         rules: [
@@ -28,6 +29,14 @@ export default {
         new webpack.optimize.CommonsChunkPlugin({
             name: 'vendor',
             filename: 'vendor.js',
+        }),
+        new FlowWebpackPlugin({
+            all: false,
+            weak: false,
+            declarations: './interfaces',
+            killFlow: false,
+            beep: true,
+            abort: false
         })
     ]
 }

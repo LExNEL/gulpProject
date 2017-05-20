@@ -1,6 +1,11 @@
 import {imagePaths} from '../config'
 import {gulp, gulpIf, folder, path, spritesmith} from '../modules'
 
+gulp.task('image', () => {
+    return gulp.src(imagePaths.src)
+        .pipe(gulp.dest(imagePaths.dest))
+})
+
 gulp.task('sprite', folder(imagePaths.src, (folder) => {
     return gulp.src(path.join(imagePaths.src, folder, '*.*'))
         .pipe(spritesmith({

@@ -1,5 +1,5 @@
 import {stylusPaths, isProduction} from '../config'
-import {gulp, gulpIf, plumber, notify, sourcemaps, stylus, nib, jeet, autoprefixer, csscomb, browserSync} from '../modules'
+import {gulp, gulpIf, plumber, notify, sourcemaps, stylus, koutoSwiss, rupture, postcss, lost, autoprefixer, csscomb, browserSync} from '../modules'
 
 gulp.task('stylus', () => {
     return gulp.src(stylusPaths.src)
@@ -9,10 +9,13 @@ gulp.task('stylus', () => {
         .pipe(gulpIf(!isProduction, sourcemaps.init()))
         .pipe(stylus({
             use: [
-                nib(),
-                jeet()
+                koutoSwiss(),
+                rupture()
             ]
         }))
+        .pipe(postcss([
+            lost()
+        ]))
         .pipe(autoprefixer({
             browsers: ['last 4 versions'],
             cascade: false

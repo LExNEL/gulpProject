@@ -1,7 +1,7 @@
-declare module 'lodash' {
-    declare var exports: lodash;
+declare module 'jquery' {
+    declare function exports(args: any): any
 }
 
-declare module 'jquery' {
-    declare var exports: jquery;
+declare module 'lodash' {
+    declare function exports(args: any): any
 }

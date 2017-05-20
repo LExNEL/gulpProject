@@ -31,7 +31,7 @@ export const fontPaths = {
 }
 
 export const libPaths = {
-    src: `./node_modules/`,
+    src: './node_modules/',
     dest: `${dirs.dest}/assets/libs/`
 }
 
