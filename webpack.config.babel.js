@@ -30,13 +30,6 @@ export default {
             name: 'vendor',
             filename: 'vendor.js',
         }),
-        new FlowWebpackPlugin({
-            all: false,
-            weak: false,
-            declarations: './interfaces',
-            killFlow: false,
-            beep: true,
-            abort: false
-        })
+        new FlowWebpackPlugin()
     ]
 }

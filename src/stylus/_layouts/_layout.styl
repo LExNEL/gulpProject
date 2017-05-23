@@ -1,16 +1,20 @@
-// Require narmalize
-@require '_normalize'
-@require '_config'
+/*! --meyer-reset------------------------------ */
+meyer-reset()
+/*! --box-sizing-reset------------------------- */
+box-sizing-reset()
+/*! --normalize-------------------------------- */
+normalize()
 
-// Style layout
+/*! --Style-layout----------------------------- */
 html,
 body
-    +at('s')
+    +above('s')
         font-size: 80%
-    +at('m')
+    +between('s', 'l')
         font-size: 95%
-    +at('l')
+    +below('l')
         font-size: 100%
+    font-family: 'Roboto'
     height: 100%
 
 main
@@ -52,3 +56,7 @@ main
 
 .indent50
     margin: 50px
+
+/*! --Clearfix-------------------------------- */
+.clearfix
+    clearfix()
