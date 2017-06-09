@@ -31,8 +31,11 @@ import gulp_pug          from 'gulp-pug';           export const pug = gulp_pug
 import gulp_autoprefixer from 'gulp-autoprefixer';  export const autoprefixer = gulp_autoprefixer
 import gulp_csscomb      from 'gulp-csscomb';       export const csscomb = gulp_csscomb
 import gulp_postcss      from 'gulp-postcss';       export const postcss = gulp_postcss
-import gulp_spritesmith  from 'gulp.spritesmith';   export const spritesmith = gulp_spritesmith
 import gulp_stylus       from 'gulp-stylus';        export const stylus = gulp_stylus
 import kouto_swiss       from 'kouto-swiss';        export const koutoSwiss = kouto_swiss
 import lost_             from 'lost';               export const lost = lost_
 import rupture_          from 'rupture';            export const rupture = rupture_
+
+// Image modules
+import gulp_spritesmith  from 'gulp.spritesmith';   export const spritesmith = gulp_spritesmith
+import gulp_svg_sprite   from 'gulp-svg-sprite';    export const svgSprite = gulp_svg_sprite

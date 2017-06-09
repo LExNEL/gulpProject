@@ -21,8 +21,13 @@ export const babelPaths = {
 }
 
 export const imagePaths = {
-    src: `${dirs.src}/images/`,
+    src: `${dirs.src}/images`,
     dest: `${dirs.dest}/assets/images/`
+}
+
+export const spritePaths = {
+    src: `${dirs.src}/images/sprites`,
+    dest: `${dirs.dest}/assets/images/sprites/`
 }
 
 export const fontPaths = {
