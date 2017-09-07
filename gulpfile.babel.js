@@ -5,8 +5,8 @@ requireDir('./gulp', {recurse: true})
 
 gulp.task('default', [
     'image',
-    'sprite:png',
-    'sprite:svg',
+    // 'sprite:png',
+    // 'sprite:svg',
     'fonts',
     'libs',
     'pug',

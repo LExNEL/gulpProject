@@ -1,5 +1,5 @@
 import {babelPaths, isProduction} from '../config'
-import {gulp, gulpIf, plumber, notify, sourcemaps, webpack, webpackStream, browserSync} from '../modules'
+import {gulp, gulpIf, rename, plumber, notify, sourcemaps, uglify, webpack, webpackStream, browserSync} from '../modules'
 import webpackConfig from '../../webpack.config.babel'
 
 gulp.task('babel', () => {
@@ -11,5 +11,10 @@ gulp.task('babel', () => {
         .pipe(webpackStream(webpackConfig, webpack))
         .pipe(gulpIf(!isProduction, sourcemaps.write()))
         .pipe(gulp.dest(babelPaths.dest))
-        .pipe(browserSync.stream())
+        .pipe(gulpIf(isProduction, uglify()))
+        .pipe(gulpIf(isProduction, rename({
+            suffix: '.min'
+        })))
+        .pipe(gulp.dest(babelPaths.dest))
+        // .pipe(browserSync.stream())
 })

@@ -1,12 +1,9 @@
 # ides folders
-.idea
-.vscode
+/.idea
+/.vscode
 
 # Node modules
 /node_modules
-
-# Bower components
-/bower_components
 
 # Distribution files
 /dist

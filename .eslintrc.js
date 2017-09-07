@@ -1,7 +1,6 @@
 module.exports = {
     "globals": {
-        "_": true,
-        "$": true
+        "_": true
     },
     "env": {
         "browser": true,

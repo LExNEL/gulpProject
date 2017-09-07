@@ -1,69 +1,79 @@
 {
-  "name": "gulptamplate",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "gulp",
-    "build": "NODE_ENV=production gulp"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/LExNEL/gulpProject.git"
-  },
-  "keywords": [
-    "gulp",
-    "pug",
-    "stylus",
-    "babel"
-  ],
-  "author": "LEx Klimin",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/LExNEL/gulpProject/issues"
-  },
-  "homepage": "https://github.com/LExNEL/gulpProject#readme",
-  "devDependencies": {
-    "babel-core": "*",
-    "babel-eslint": "*",
-    "babel-loader": "*",
-    "babel-preset-env": "*",
-    "babel-preset-flow": "*",
-    "browser-sync": "*",
-    "eslint": "*",
-    "eslint-loader": "*",
-    "eslint-plugin-flowtype": "*",
-    "event-stream": "*",
-    "flow-bin": "*",
-    "flow-webpack-plugin": "*",
-    "fs": "*",
-    "gulp": "*",
-    "gulp-autoprefixer": "*",
-    "gulp-babel": "*",
-    "gulp-batch": "*",
-    "gulp-csscomb": "*",
-    "gulp-flowtype": "*",
-    "gulp-folders": "*",
-    "gulp-if": "*",
-    "gulp-notify": "*",
-    "gulp-plumber": "*",
-    "gulp-postcss": "*",
-    "gulp-pug": "*",
-    "gulp-sourcemaps": "*",
-    "gulp-stylus": "*",
-    "gulp-svg-sprite": "^1.3.7",
-    "gulp-watch": "*",
-    "gulp.spritesmith": "*",
-    "kouto-swiss": "*",
-    "lost": "*",
-    "require-dir": "*",
-    "rupture": "*",
-    "webpack": "*",
-    "webpack-stream": "*"
-  },
-  "dependencies": {
-    "jquery": "*",
-    "lodash": "*"
-  }
+    "name": "gulptamplate",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "dev": "gulp",
+        "build": "NODE_ENV=production gulp"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/LExNEL/gulpProject.git"
+    },
+    "keywords": [
+        "gulp",
+        "webpack",
+        "pug",
+        "stylus",
+        "babel"
+    ],
+    "author": "LEx Klimin",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/LExNEL/gulpProject/issues"
+    },
+    "homepage": "https://github.com/LExNEL/gulpProject#readme",
+    "devDependencies": {
+        "babel-core": "*",
+        "babel-eslint": "*",
+        "babel-loader": "*",
+        "babel-preset-env": "*",
+        "babel-preset-flow": "*",
+        "browser-sync": "*",
+        "css-loader": "*",
+        "eslint": "*",
+        "eslint-loader": "*",
+        "eslint-plugin-flowtype": "*",
+        "event-stream": "*",
+        "extract-text-webpack-plugin": "*",
+        "flow-bin": "*",
+        "flow-webpack-plugin": "*",
+        "fs": "*",
+        "gulp": "*",
+        "gulp-autoprefixer": "*",
+        "gulp-babel": "*",
+        "gulp-batch": "*",
+        "gulp-clean-css": "*",
+        "gulp-csscomb": "*",
+        "gulp-flowtype": "*",
+        "gulp-folders": "*",
+        "gulp-if": "*",
+        "gulp-notify": "*",
+        "gulp-plumber": "*",
+        "gulp-postcss": "*",
+        "gulp-pug": "*",
+        "gulp-rename": "*",
+        "gulp-sourcemaps": "*",
+        "gulp-stylus": "*",
+        "gulp-svg-sprite": "*",
+        "gulp-uglify": "*",
+        "gulp-watch": "*",
+        "gulp.spritesmith": "*",
+        "kouto-swiss": "*",
+        "lost": "*",
+        "require-dir": "*",
+        "rupture": "*",
+        "style-loader": "*",
+        "webpack": "*",
+        "webpack-dev-middleware": "*",
+        "webpack-dev-server": "^2.7.1",
+        "webpack-hot-middleware": "*",
+        "webpack-stream": "*"
+    },
+    "dependencies": {
+        "font-awesome": "*",
+        "lodash": "*"
+    }
 }

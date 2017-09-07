@@ -1,5 +1,5 @@
 import {stylusPaths, isProduction} from '../config'
-import {gulp, gulpIf, plumber, notify, sourcemaps, stylus, koutoSwiss, rupture, postcss, lost, autoprefixer, csscomb, browserSync} from '../modules'
+import {gulp, gulpIf, rename, plumber, notify, sourcemaps, stylus, koutoSwiss, rupture, postcss, lost, autoprefixer, csscomb, clean, browserSync} from '../modules'
 
 gulp.task('stylus', () => {
     return gulp.src(stylusPaths.src)
@@ -22,6 +22,11 @@ gulp.task('stylus', () => {
         }))
         .pipe(gulpIf(!isProduction, sourcemaps.write()))
         .pipe(gulpIf(isProduction, csscomb()))
+        .pipe(gulp.dest(stylusPaths.dest))
+        .pipe(gulpIf(isProduction, clean()))
+        .pipe(gulpIf(isProduction, rename({
+            suffix: '.min'
+        })))
         .pipe(gulp.dest(stylusPaths.dest))
         .pipe(browserSync.stream())
 })
